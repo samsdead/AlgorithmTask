@@ -21,6 +21,8 @@ public class Searcher {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+
+    
     /**
      * Compare the front part of two character arrays.
      * @param s the first character array
