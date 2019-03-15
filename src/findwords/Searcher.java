@@ -1,5 +1,6 @@
 package findwords;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -18,11 +19,20 @@ public class Searcher {
      */
     public boolean equal(String s, String t, int n) {
         // replace the following line with your implementation
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        if (s.length() < n || t.length()< n ) {
+            return true;
+        }
+
+        for (int i = 0; i<n; i++){
+                if (s.charAt(i) != t.charAt(i)) {
+                    return false;
+                }
+        }
+            return true;
     }
 
 
-    
     /**
      * Compare the front part of two character arrays.
      * @param s the first character array
@@ -32,8 +42,26 @@ public class Searcher {
      */
     public boolean lessThan(String s, String t, int n) {
         // replace the following line with your implementation
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        if (n > s.length()) {
+            if (equal(s, t, s.length())) {
+                return true;
+            }
+            return false;
+        }
+            for (int i = 0; i < n; i++) {
+                if (i == n - 1) {
+                    if (s.charAt(i) == t.charAt(i)) {
+                        return false;
+                    }
+                }
+                if (s.charAt(i) > t.charAt(i)) {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
 
     /**
      * Find the first position of a prefix in a dictionary.
@@ -45,7 +73,20 @@ public class Searcher {
      */
     public int findPrefix(Dictionary d, String w, int n) {
         // replace the following line with your implementation
-        throw new UnsupportedOperationException("Not supported yet.");
+        int lo = 0;
+        int hi = d.size()-1;
+        int mid;
+        while (lo<hi){
+            mid = (lo+hi) /2;
+            if (this.lessThan(d.getWord(mid), w,n)){
+            lo= mid+1;
+            }else {
+                hi = mid-1;
+            }
+
+
+        }
+        return lo;
     }
 
     /**
