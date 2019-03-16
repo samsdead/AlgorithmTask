@@ -40,12 +40,15 @@ public class Tester {
         tester.testEqual("binder", "binding", 5);
         tester.testEqual("bind", "bind", 5);
         tester.testEqual("return", "react", 2);
+        tester.testEqual("bit", "boot", 4);
+        tester.testEqual("find", "finding", 4);
+        tester.testEqual("bit", "binary", 4);
 
         tester.testLessThan("binary", "bind", 4);
         tester.testLessThan("binder", "binding", 4);
         tester.testLessThan("binding", "binder", 4);
         tester.testLessThan("bin", "binary", 4);
-        tester.testLessThan("binary", "bin", 4);
+        tester.testLessThan("bit", "binary", 4);
 
 
         tester.testFindPrefix("bi", 2);

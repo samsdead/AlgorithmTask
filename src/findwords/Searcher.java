@@ -21,12 +21,18 @@ public class Searcher {
      */
     public boolean equal(String s, String t, int n) {
         // replace the following line with your implementation
-
-        if (s.length() < n || t.length() < n) {
-            return true;
+        int k = n;
+        if(t.length() < n && t.length() < s.length() ){
+            return false;
         }
-        for (int i = 0; i < n; i++) {
-            if (s.charAt(i) != t.charAt(i)) {
+        if(t.length()>s.length() && s.length()<n){
+            return false;
+        }
+        if(s.length() == t.length() && n > s.length()){
+            k = s.length();
+        }
+        for (int i = 1; i <= k; i++) {
+            if (s.charAt(i - 1) != t.charAt(i - 1)) {
                 return false;
             }
         }
@@ -44,21 +50,29 @@ public class Searcher {
      */
     public boolean lessThan(String s, String t, int n) {
         // replace the following line with your implementation
-        //rewrite THIS IS ONLY A REFERENCE. USED TO GET CODE RUNNING. 
-        for (int i = 0; i < n; i++) {
-            try {
-                if (s.charAt(i) != t.charAt(i)) {
-                    return s.charAt(i) < t.charAt(i);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                if (t.length() > s.length()) {
-                    return true;
-                } else {
-                    return false;
-                }
+        if (equal(s, t, n)){
+            return false;
+        }
+        if (t.length()>s.length()){
+            n = s.length();
+        }
+        if (s.length() < n || t.length() < n){
+            if(t.length() < s.length()){
+                n = t.length();
+            }
+            else if(s.length() < t.length()){
+                n = s.length();
             }
         }
-        return !this.equal(s, t, n);
+        for (int i=0; i<n; i++){
+            if (s.charAt(i)>t.charAt(i)){ // difference
+                return false;
+            }
+            if (s.charAt(i)<t.charAt(i)){
+                return true;
+            }
+        }
+        return true;
     }
 
     /**
